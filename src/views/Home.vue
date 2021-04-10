@@ -53,6 +53,7 @@ export default {
         }
     },
     mounted () {
+        console.log(process.env.NODE_ENV)
         this.$store.dispatch('loadPopularMovies')
         this.$store.dispatch('loadNowPlayingMovies')
     },
