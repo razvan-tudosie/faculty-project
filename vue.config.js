@@ -1,7 +1,5 @@
 module.exports = {
-    publicPath: process.env.NODE_ENV === 'production'
-    ? '/faculty-project/'
-    : '/',
+    publicPath: process.env.NODE_ENV === 'production' ? '/faculty-project/' : '/',
 
     chainWebpack: config => {
         config
