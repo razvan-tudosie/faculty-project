@@ -1,10 +1,10 @@
 <template>
-    <div class="ticket">
-        asd
-    </div>
     <header class="movieHeader" :style=" 'background-image: url(https://image.tmdb.org/t/p/original/' + movieDetails.backdrop_path + ')' ">
+    <!-- <header class="movieHeader"> -->
 
-        <BuyTickets />
+        <transition name="fadeBuy">
+            <BuyTickets :title="movieDetails.title" v-if="showBuyTickets" @closeBuy="showBuyTickets = !showBuyTickets"/>
+        </transition>
 
         <div class="movieHeader_overlay">
             <div class="movieHeader_content">
@@ -26,14 +26,18 @@
                             <span class="name" v-if="productionComp.logo_path === null">{{ productionComp.name }}</span>
                         </li>
                     </ul>
+                    <div class="buy" v-if="userData">
+                        <button @click="showBuyTickets = !showBuyTickets" class="btn btn_primary">Buy Tickets</button>
+                    </div>
+                    <div class="buy" v-if="!userData">
+                        <span class="alert">Login to buy a ticket</span>
+                    </div>
                 </div>
             </div>
         </div>
-
     </header>
 
     <div class="grid_container">
-
         <section class="cast">
             <h3>The Cast</h3>
             <ul class="cast_people">
@@ -63,24 +67,19 @@
             </div>
         </section>
 
-        <!-- <div class="cast">
-            <h3>Recomandations</h3>
-            <ul class="cast_people">
-                <li class="person" v-for="movie of movieRecomandations.results" :key="movie.id">
-
-                    <img class="person_image" :src="'https://image.tmdb.org/t/p/w200' + movie.poster_path" alt="">
-                    <p class="person_name">{{ movie.title }}</p>
-                </li>
-            </ul>
-        </div> -->
-
     </div>
 </template>
+
+<style lang="scss">
+    .buy {
+        margin-top: 30px;
+    }
+</style>
 
 <script>
 import BuyTickets from '@/components/BuyTickets.vue'
 
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 
@@ -92,6 +91,11 @@ export default {
     setup () {
         const store = useStore()
         const route = useRoute()
+        const showBuyTickets = ref(false)
+
+        const userData = computed(() => {
+            return store.getters.user
+        })
 
         const movieDetails = computed(() => {
             return store.state.movieDetails
@@ -117,7 +121,7 @@ export default {
         )
 
         return {
-            movieDetails, movieCredits, movieRecomandations, movieVideos
+            movieDetails, movieCredits, movieRecomandations, movieVideos, showBuyTickets, userData
         }
     }
 

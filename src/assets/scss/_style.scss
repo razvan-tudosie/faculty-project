@@ -57,6 +57,11 @@ body {
     }
 }
 
+.alert {
+    padding: 8px;
+    background-color:rgba(255, 0, 0, 0.695)
+}
+
 #sidebar {
     position: fixed;
     height:100vh;
@@ -65,6 +70,7 @@ body {
     z-index: 3;
     color:#fff;
     display: none;
+    top:0px;
 
     &.active {
         display:block;
@@ -232,6 +238,11 @@ body {
     border-radius: .25rem;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 
+    &:disabled {
+        opacity: 0.3;
+        background-color: #ccc
+    }
+
     &_primary {
         background-color: $primary-color;
         color: $secondary-color-text;
@@ -262,6 +273,7 @@ body {
     width: 100%;
     padding: 16px 0;
     z-index: 2;
+    top:0px;
 
     .grid_container {
         display:flex;
@@ -437,26 +449,7 @@ body {
         background-color: rgba($primary-color-bg, 0.5);
     }
 
-    @media only screen and (min-width: 600px) {
-        &_content {
-            display: flex;
-            gap: 24px;
-
-            &_poster {
-                display: flex;
-                flex-direction: column;
-                flex-basis: 100%;
-                flex: 1;
-            }
-
-            &_details {
-                display: flex;
-                flex-direction: column;
-                flex-basis: 100%;
-                flex: 2;
-            }
-        }
-    }
+    
     
 
     &_content {
@@ -466,7 +459,9 @@ body {
         
 
         &_poster {
-    
+            width: 300px;
+            margin:0px auto;
+
             img {
                 width: 100%;
             }
@@ -542,10 +537,87 @@ body {
         }
     }
 
+    @media only screen and (min-width: 600px) {
+        &_content {
+            display: flex;
+            gap: 24px;
+
+            &_poster {
+                display: flex;
+                flex-direction: column;
+                flex-basis: 100%;
+                flex: 1;
+                width: auto;
+            }
+
+            &_details {
+                display: flex;
+                flex-direction: column;
+                flex-basis: 100%;
+                flex: 2;
+            }
+        }
+    }
+
     #buyOverlay {
         background-color: $primary-color-bg;
-        height:100vh;
-        padding-top:100px;
+        height:900px;
+
+        .buyContainer {
+            padding-top: 50px;
+        }
+
+        .formFooter {
+            max-width: $grid-width;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+
+            h2 {
+                margin-top:20px;
+                margin-bottom: 20px;
+            }
+
+            ul.seatsList {
+                li {
+                    display: inline-block;
+                    padding: 0px 4px;
+                    color: $primary-color;
+                }
+            }
+        }
+
+        iframe {
+            // position: absolute;
+            width: 300px;
+            height: 200px;
+            display: block;
+            margin: 0px auto;
+        }
+        // animation buy overlay
+
+        &.fadeBuy-enter-from {
+            height:0px !important;
+            opacity: 0;
+        }
+        &.fadeBuy-enter-to {
+            height:900px;
+            opacity: 1;
+        }
+        &.fadeBuy-enter-active {
+            transition: all 2s ease;
+        }
+
+        &.fadeBuy-leave-from {
+            height:900px;
+        }
+        &.fadeBuy-leave-to {
+            height:0px !important;
+        }
+        &.fadeBuy-leave-active {
+            transition: all 2s ease;
+        }
+
     }
 
 }
@@ -619,7 +691,6 @@ body {
     padding-top: 100px;
 }
 
-
 #seatsLayout {
     max-width:900px;
     margin: 9px auto;
@@ -686,5 +757,32 @@ body {
             background-color:blue;
         }
         
+    }
+}
+
+#pageContainer {
+    max-width: $grid-width;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:130px;
+    padding: 0px 24px;
+
+    p {
+        margin-bottom: 16px;
+    }
+
+    h1 {
+        font-size: 36px;
+        margin-bottom: 1.5rem;
+    }
+
+    img.floatLeft {
+        float:left;
+        margin-right:16px;
+    }
+
+    img.floatRight {
+        float:right;
+        margin-left:16px;
     }
 }

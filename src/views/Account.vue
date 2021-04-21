@@ -11,7 +11,6 @@
                     <p>{{ ticket.seat }}</p>
                 </li>
             </ul>
-            <button @click="addTicket">CLick</button>
         </div>
     </div>
 </template>
@@ -33,17 +32,8 @@ export default {
             return store.getters.user
         })
 
-        const addTicket = () => {
-            store.dispatch('createUserColection', {
-                user: userData.value.id,
-                movie: 'Razboiul stelelor',
-                seat: '4A',
-                datetime: '20.10.2021'
-            })
-        }
-
         return {
-            tickets, userData, addTicket
+            tickets, userData
         }
     }
 }
