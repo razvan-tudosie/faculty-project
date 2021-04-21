@@ -1,8 +1,8 @@
 <template>
     <transition appear name="fade">
-        <header class="homeHero" v-if="moviesPopular != '' " :style=" 'background-image: url(https://image.tmdb.org/t/p/original/' + moviesPopular[heroSlideNumber].backdrop_path + ')' ">
-            <div class="homeHero_slide" >
-                <div class="grid_container homeHero_slide_details">
+        <header :key="heroSlideNumber" class="homeHero" v-if="moviesPopular != '' " :style=" 'background-image: url(https://image.tmdb.org/t/p/original/' + moviesPopular[heroSlideNumber].backdrop_path + ')' ">
+            <div class="homeHero_slide">
+                <div class="homeHero_slide_details">
                     <div class="">
                         <h1>{{ moviesPopular[heroSlideNumber].title }}</h1>
 
@@ -40,21 +40,16 @@
         </div>
     </transition>
 
-    <!-- <button @click="showHero = !showHero">TEST Click me</button> &nbsp;
-
-    <button @click="heroSlideNumber--" :disabled="heroSlideNumber <= 0">TEST PREV</button> &nbsp;
-    <button @click="heroSlideNumber++" :disabled="heroSlideNumber >= moviesPopular.length - 1">TEST NEXT</button> -->
-
-    <br><br><br>
-
-    <section class="grid_container movies">
-        <div class="grid_container_flex">
-            <div class="movieBox" v-for="movie in moviesNowPlaying" :key="movie.id">
-                <h3>{{ movie.title }}</h3>
-                <img :src="'https://image.tmdb.org/t/p/w200/' + movie.poster_path" alt="">
-                <router-link :to="'/movie/' + movie.id" class="btn btn_secondary_ghost">Find out more</router-link>
-            </div>
+    <section class="grid_movies">
+        <div class="movieBox" v-for="movie in moviesNowPlaying" :key="movie.id">
+            <router-link :to="'/movie/' + movie.id">
+                <div class="movieBox_image">
+                    <img :src="'https://image.tmdb.org/t/p/w200/' + movie.poster_path" alt="">
+                </div>
+                <h3 class="movieBox_title">{{ movie.title }}</h3>
+            </router-link>
         </div>
+
     </section>
 </template>
 

@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Movie from '../views/Movie.vue'
+import AuthGuard from './auth-guard'
 
 const routes = [
     {
@@ -20,6 +21,12 @@ const routes = [
         path: '/movie/:id',
         name: 'Movie',
         component: Movie
+    },
+    {
+        path: '/account',
+        name: 'Account',
+        component: () => import(/* webpackChunkName: "about" */ '../views/Account.vue'),
+        beforeEnter: AuthGuard
     }
 ]
 
