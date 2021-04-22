@@ -27,4 +27,4 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Production build
-You can see the production build on the [live branch](/tree/live).
+You can see the production build on the [live branch](https://github.com/razvan-tudosie/faculty-project/tree/live).
