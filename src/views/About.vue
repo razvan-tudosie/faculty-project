@@ -1,5 +1,5 @@
 <template>
-    <div id="pageContainer">
+    <div id="page_container">
         <h1>This is an about page</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dictum placerat risus quis bibendum. Etiam ullamcorper auctor dui. Quisque vel nisl et neque sodales pretium egestas non elit. Maecenas eget scelerisque enim. Mauris at arcu vehicula, rutrum dui at, volutpat risus. In libero urna, egestas ut pulvinar aliquet, mattis vel metus. Duis consequat lacus eget felis condimentum, in consequat metus convallis. Duis ullamcorper viverra blandit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; In vel enim auctor, mollis lectus ultricies, porta orci. Integer viverra erat ipsum, eu consequat enim accumsan at. Ut interdum erat eu nunc blandit, eu blandit nisl ornare. Sed at lorem in sapien semper rutrum. Curabitur in ullamcorper ipsum. Nullam et nisi semper, elementum enim nec, fringilla ipsum.</p>
         <img class="floatLeft" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Marvel_Logo.svg/220px-Marvel_Logo.svg.png" alt="">
